@@ -6,10 +6,11 @@ const game = new Game();
 
 const blocksRows = Array.from(document.querySelectorAll('tr'));
 const score = document.querySelector('.game-score');
-const startButton = document.querySelector('.button');
+const button = document.querySelector('.button');
 const message = Array.from(document.querySelectorAll('.message'));
 const messageWin = document.querySelector('.message-win');
 const messageLose = document.querySelector('.message-lose');
+const messageStart = document.querySelector('.message-start');
 
 function newBlocks(board) {
   for (let i = 0; i < blocksRows.length; i++) {
@@ -39,17 +40,21 @@ function cleanDisplayStyles() {
 }
 
 window.addEventListener('keydown', (e) => {
+  cleanDisplayStyles();
+
   if (game.getStatus() === 'lose') {
-    cleanDisplayStyles();
     messageLose.style.display = 'block';
 
     return;
   }
 
   if (game.getStatus() === 'win') {
-    cleanDisplayStyles();
     messageWin.style.display = 'block';
 
+    return;
+  }
+
+  if (!game.isGame) {
     return;
   }
 
@@ -70,12 +75,30 @@ window.addEventListener('keydown', (e) => {
   score.textContent = String(game.getScore());
 });
 
-startButton.addEventListener('click', () => {
-  game.start();
+button.addEventListener('click', () => {
+  button.classList.toggle('start');
+  button.classList.toggle('restart');
+
+  cleanDisplayStyles();
+
+  if (button.textContent === 'Start') {
+    button.textContent = 'Restart';
+    game.start();
+
+    if (game.getStatus() === 'playing') {
+      messageStart.style.display = 'none';
+    }
+  } else if (button.textContent === 'Restart') {
+    button.textContent = 'Start';
+    game.restart();
+
+    if (game.getStatus() === 'idle') {
+      messageStart.style.display = 'block';
+    }
+  }
   score.textContent = String(game.getScore());
 
   const board = game.getState();
 
   newBlocks(board);
-  cleanDisplayStyles();
 });

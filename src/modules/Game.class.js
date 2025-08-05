@@ -1,6 +1,13 @@
 'use strict';
 class Game {
-  constructor(initialState) {
+  constructor(
+    initialState = [
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+    ],
+  ) {
     this.initialState = initialState;
 
     if (initialState) {
@@ -270,7 +277,7 @@ class Game {
         this.board[i][j] = this.initialState[i][j];
       }
     }
-
+    this.isGame = false;
     this.score = 0;
   }
 
