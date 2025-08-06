@@ -121,11 +121,46 @@ let touchEndY = 0;
 const threshold = 30; // Мінімальна відстань для свайпу
 
 document.addEventListener('touchstart', (e) => {
+  if (game.getStatus() === 'lose') {
+    cleanDisplayStyles();
+    messageLose.style.display = 'block';
+
+    return;
+  }
+
+  if (game.getStatus() === 'win') {
+    cleanDisplayStyles();
+    messageWin.style.display = 'block';
+
+    return;
+  }
+
+  if (!game.isGame) {
+    return;
+  }
+
   touchStartX = e.changedTouches[0].screenX;
   touchStartY = e.changedTouches[0].screenY;
 });
 
 document.addEventListener('touchend', (e) => {
+  if (game.getStatus() === 'lose') {
+    cleanDisplayStyles();
+    messageLose.style.display = 'block';
+
+    return;
+  }
+
+  if (game.getStatus() === 'win') {
+    cleanDisplayStyles();
+    messageWin.style.display = 'block';
+
+    return;
+  }
+
+  if (!game.isGame) {
+    return;
+  }
   touchEndX = e.changedTouches[0].screenX;
   touchEndY = e.changedTouches[0].screenY;
 
