@@ -13,6 +13,8 @@ const messageLose = document.querySelector('.message-lose');
 const messageStart = document.querySelector('.message-start');
 const body = document.querySelector('body');
 
+body.style.height = '100vh';
+
 function newBlocks(board) {
   for (let i = 0; i < blocksRows.length; i++) {
     const blocksElements = Array.from(blocksRows[i].querySelectorAll('td'));
@@ -41,9 +43,6 @@ function cleanDisplayStyles() {
 }
 
 window.addEventListener('keydown', (e) => {
-  body.style.overflow = 'hidden';
-  body.style.height = '100vh';
-
   if (game.getStatus() === 'lose') {
     cleanDisplayStyles();
     messageLose.style.display = 'block';
