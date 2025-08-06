@@ -40,15 +40,15 @@ function cleanDisplayStyles() {
 }
 
 window.addEventListener('keydown', (e) => {
-  cleanDisplayStyles();
-
   if (game.getStatus() === 'lose') {
+    cleanDisplayStyles();
     messageLose.style.display = 'block';
 
     return;
   }
 
   if (game.getStatus() === 'win') {
+    cleanDisplayStyles();
     messageWin.style.display = 'block';
 
     return;
