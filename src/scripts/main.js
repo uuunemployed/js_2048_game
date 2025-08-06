@@ -42,6 +42,7 @@ function cleanDisplayStyles() {
 
 window.addEventListener('keydown', (e) => {
   body.style.overflow = 'hidden';
+  body.style.height = '100vh';
 
   if (game.getStatus() === 'lose') {
     cleanDisplayStyles();
