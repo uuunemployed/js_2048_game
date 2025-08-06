@@ -107,3 +107,58 @@ button.addEventListener('click', () => {
 
   newBlocks(board);
 });
+
+// вставив з чату GPT щоб управління працювало на телефоні
+
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
+
+const threshold = 30; // Мінімальна відстань для свайпу
+
+document.addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+  touchStartY = e.changedTouches[0].screenY;
+});
+
+document.addEventListener('touchend', (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  touchEndY = e.changedTouches[0].screenY;
+
+  handleGesture();
+});
+
+function handleGesture() {
+  if (!game.isGame) {
+    return;
+  }
+
+  const diffX = touchEndX - touchStartX;
+  const diffY = touchEndY - touchStartY;
+
+  if (Math.abs(diffX) > Math.abs(diffY)) {
+    // Горизонтальний свайп
+    if (Math.abs(diffX) > threshold) {
+      if (diffX > 0) {
+        game.moveRight();
+      } else {
+        game.moveLeft();
+      }
+    }
+  } else {
+    // Вертикальний свайп
+    if (Math.abs(diffY) > threshold) {
+      if (diffY > 0) {
+        game.moveDown();
+      } else {
+        game.moveUp();
+      }
+    }
+  }
+
+  const board = game.getState();
+
+  newBlocks(board);
+  score.textContent = String(game.getScore());
+}
