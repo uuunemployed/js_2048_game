@@ -11,6 +11,7 @@ const message = Array.from(document.querySelectorAll('.message'));
 const messageWin = document.querySelector('.message-win');
 const messageLose = document.querySelector('.message-lose');
 const messageStart = document.querySelector('.message-start');
+const body = document.querySelector('body');
 
 function newBlocks(board) {
   for (let i = 0; i < blocksRows.length; i++) {
@@ -40,6 +41,8 @@ function cleanDisplayStyles() {
 }
 
 window.addEventListener('keydown', (e) => {
+  body.style.overflow = 'hidden';
+
   if (game.getStatus() === 'lose') {
     cleanDisplayStyles();
     messageLose.style.display = 'block';
