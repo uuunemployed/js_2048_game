@@ -58,15 +58,30 @@ window.addEventListener('keydown', (e) => {
     return;
   }
 
-  if (e.key === 'ArrowLeft') {
-    game.moveLeft();
-  } else if (e.key === 'ArrowRight') {
-    game.moveRight();
-  } else if (e.key === 'ArrowUp') {
-    game.moveUp();
-  } else if (e.key === 'ArrowDown') {
-    game.moveDown();
+  switch (e.key) {
+    case 'ArrowLeft':
+      game.moveLeft();
+      break;
+    case 'ArrowRight':
+      game.moveRight();
+      break;
+    case 'ArrowUp':
+      game.moveUp();
+      break;
+    case 'ArrowDown':
+      game.moveDown();
+      break;
   }
+
+  // if (e.key === 'ArrowLeft') {
+  //   game.moveLeft();
+  // } else if (e.key === 'ArrowRight') {
+  //   game.moveRight();
+  // } else if (e.key === 'ArrowUp') {
+  //   game.moveUp();
+  // } else if (e.key === 'ArrowDown') {
+  //   game.moveDown();
+  // }
 
   const board = game.getState();
 
