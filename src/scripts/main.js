@@ -73,16 +73,6 @@ window.addEventListener('keydown', (e) => {
       break;
   }
 
-  // if (e.key === 'ArrowLeft') {
-  //   game.moveLeft();
-  // } else if (e.key === 'ArrowRight') {
-  //   game.moveRight();
-  // } else if (e.key === 'ArrowUp') {
-  //   game.moveUp();
-  // } else if (e.key === 'ArrowDown') {
-  //   game.moveDown();
-  // }
-
   const board = game.getState();
 
   newBlocks(board);
